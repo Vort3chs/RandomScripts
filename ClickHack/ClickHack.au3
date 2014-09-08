@@ -1,0 +1,1 @@
+;;Create ClickHack.au3
