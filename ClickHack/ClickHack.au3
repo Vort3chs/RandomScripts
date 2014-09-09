@@ -11,16 +11,14 @@ Global $aPos, $X, $Y, $OrgX, $OrgY, $MouseRevert
 $MouseRevert = 0
 
 #Region ### START Koda GUI section ### Form=
-Global $ClickHack = GUICreate("Bryce Is a Fag", 308, 192, 186, 234, -1, BitOR($WS_EX_TOPMOST, $WS_EX_WINDOWEDGE))
+Global $ClickHack = GUICreate("ClickHack", 309, 232, 308, 252, -1, BitOR($WS_EX_TOPMOST,$WS_EX_WINDOWEDGE))
 GUISetBkColor(0x00FFFF)
 Global $Button2 = GUICtrlCreateButton("Start The Hack!", 16, 24, 273, 73)
 GUICtrlSetBkColor(-1, 0x00FF00)
 GUICtrlSetTip(-1, "Start ClickHack")
-GUICtrlSetCursor(-1, 0)
+GUICtrlSetCursor (-1, 0)
 Global $Label1 = GUICtrlCreateLabel("Click start hack and then mouse over the area where you", 16, 96, 274, 17)
 Global $Label2 = GUICtrlCreateLabel("would like to click and hit space to begin clicking!", 32, 112, 238, 17)
-Global $Checkbox1 = GUICtrlCreateCheckbox("Keep computer awake?", 88, 168, 169, 17)
-GUICtrlSetCursor(-1, 0)
 Global $Label3 = GUICtrlCreateLabel("HIT ESCAPE TO STOP THE HACK", 24, 144, 254, 24)
 GUICtrlSetFont(-1, 12, 400, 0, "MS Sans Serif")
 GUICtrlSetColor(-1, 0xFF0000)
@@ -28,20 +26,23 @@ Global $Label4 = GUICtrlCreateLabel("Ceated by: Vort3chs", 0, 0, 100, 17)
 Global $Button1 = GUICtrlCreateButton("GitHub", 248, 0, 57, 17)
 GUICtrlSetColor(-1, 0xFFFFFF)
 GUICtrlSetBkColor(-1, 0x000000)
-GUICtrlSetCursor(-1, 0)
+GUICtrlSetCursor (-1, 0)
 Global $Button3 = GUICtrlCreateButton("About", 192, 0, 57, 17)
 GUICtrlSetColor(-1, 0xFFFFFF)
 GUICtrlSetBkColor(-1, 0x000000)
-GUICtrlSetCursor(-1, 0)
+GUICtrlSetCursor (-1, 0)
 Global $Label5 = GUICtrlCreateLabel("Hold P to pause the hack, release to resume!", 40, 128, 217, 17)
 GUICtrlSetFont(-1, 5, 400, 0, "MS Sans Serif")
 GUICtrlSetColor(-1, 0xFF0000)
-Global $Label6 = GUICtrlCreateLabel("NOT CLICKING!", 104, 0, 80, 18, BitOR($WS_Border, $SS_Center))
-GUICtrlSetColor($Label6, 0x008000)
+Global $Label6 = GUICtrlCreateLabel("NOT CLICKING!", 104, 0, 80, 18)
+GUICtrlSetColor(-1, 0x001F40)
+Global $Slider1 = GUICtrlCreateSlider(24, 168, 265, 17)
+GUICtrlSetLimit(-1, 1000, 10)
+GUICtrlSetData(-1, 10)
+Global $Label7 = GUICtrlCreateLabel("Hit '+' or '-' to change the slider while clicking!", 48, 207, 225, 17)
+Global $Label8 = GUICtrlCreateLabel("This slider changes the hack's clicking speed.", 46, 192, 221, 17)
 GUISetState(@SW_SHOW)
 #EndRegion ### END Koda GUI section ###
-
-
 
 While 1
 	Switch GUIGetMsg()
@@ -58,18 +59,6 @@ While 1
 					"All of the code, the README, updated download links, my other programs, etc. are available on my GitHub!" & @CRLF & @CRLF & _
 					"Thanks for using my program! :)")
 			GUICtrlSetState($Button3, $GUI_Enable)
-			;		Case GUICtrlRead($Checkbox1) = $GUI_Checked
-			;			If $MouseRevert = 0 Then
-			;				Local $aPos = MouseGetPos()
-			;				$OrgX = $aPos[0]
-			;				$OrgY = $aPos[1]
-			;				$X = $aPos[0] - 1
-			;				$Y = $aPos[1] - 1
-			;				MouseMove($X, $Y)
-			;				$MouseRevert = 1
-			;			Else
-			;				MouseRevert()
-			;			EndIf
 	EndSwitch
 WEnd
 
@@ -100,8 +89,3 @@ Func HackWait()
 		HotKeySet("{SPACE}")
 	EndIf
 EndFunc   ;==>HackWait
-
-;Func MouseRevert()
-;MouseMove($OrgX, $OrgY)
-;$MouseRevert = 0
-;EndFunc   ;==>MouseRevert
