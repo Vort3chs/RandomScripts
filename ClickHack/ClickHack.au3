@@ -6,9 +6,10 @@
 #include <Misc.au3>
 #include <StaticConstants.au3>
 
-Global $aPos, $X, $Y, $OrgX, $OrgY, $MouseRevert
+Global $Speed, $aPos, $X, $Y, $OrgX, $OrgY, $MouseRevert
 
 $MouseRevert = 0
+$Speed = 1
 
 #Region ### START Koda GUI section ### Form=
 Global $ClickHack = GUICreate("ClickHack", 309, 232, 308, 252, -1, BitOR($WS_EX_TOPMOST,$WS_EX_WINDOWEDGE))
@@ -37,8 +38,8 @@ GUICtrlSetColor(-1, 0xFF0000)
 Global $Label6 = GUICtrlCreateLabel("NOT CLICKING!", 104, 0, 80, 18)
 GUICtrlSetColor(-1, 0x001F40)
 Global $Slider1 = GUICtrlCreateSlider(24, 168, 265, 17)
-GUICtrlSetLimit(-1, 1000, 10)
-GUICtrlSetData(-1, 10)
+GUICtrlSetLimit(-1, 1000, 1)
+GUICtrlSetData(-1, 1)
 Global $Label7 = GUICtrlCreateLabel("Hit '+' or '-' to change the slider while clicking!", 48, 207, 225, 17)
 Global $Label8 = GUICtrlCreateLabel("This slider changes the hack's clicking speed.", 46, 192, 221, 17)
 GUISetState(@SW_SHOW)
@@ -68,7 +69,14 @@ Func StartClick()
 		GUICtrlSetData($Label6, "CLICKING")
 		GUICtrlSetColor($Label6, 0xFF0000)
 		MouseClick("Left")
-		Sleep(1)
+		$Speed = GUICtrlRead($Slider1)
+		Sleep($Speed)
+		If _IsPressed("BD") Then
+		GUICtrlSetData($Slider1,$Speed - 15)
+		EndIf
+		If _IsPressed("BB") Then
+		GUICtrlSetData($Slider1,$Speed + 15)
+		EndIf
 		If _IsPressed("1B") Then
 			GUICtrlSetData($Label6, "NOT CLICKING")
 			GUICtrlSetColor($Label6, 0x008000)
