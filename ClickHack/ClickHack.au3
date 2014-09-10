@@ -15,7 +15,7 @@ $Speed = 1
 #Region ### START Koda GUI section ### Form=
 Global $ClickHack = GUICreate("ClickHack", 308, 237, 407, 202, -1, BitOR($WS_EX_TOPMOST,$WS_EX_WINDOWEDGE))
 GUISetBkColor(0x00FFFF)
-Global $Button2 = GUICtrlCreateButton("Start The Hack!", 18, 24, 273, 73, BitOR($BS_VCENTER,$BS_MULTILINE))
+Global $Button2 = GUICtrlCreateButton(@CR & @CRLF & "Start The Hack!", 18, 24, 273, 73, BitOR($BS_VCENTER,$BS_MULTILINE))
 GUICtrlSetBkColor(-1, 0x00FF00)
 GUICtrlSetTip(-1, "Start ClickHack")
 GUICtrlSetCursor (-1, 0)
@@ -54,7 +54,7 @@ While 1
 			ShellExecute("http://github.com/vort3chs")
 		Case $Button2
 			GUICtrlSetState($Button2,$GUI_Disable)
-			GUICtrlSetData($Button2,"Hit SPACE at desired location to begin clicking!" & @CRLF & "Hit ESCAPE to cancel")
+			GUICtrlSetData($Button2,@CR & @CRLF & "Hit SPACE at desired location to begin clicking!" & @CRLF & "Hit ESCAPE to cancel")
 			HackWait()
 		Case $Button3
 			GUICtrlSetState($Button3, $GUI_Disable)
@@ -68,7 +68,7 @@ WEnd
 
 Func StartClick()
 	HotKeySet("{SPACE}")
-	GUICtrlSetData($Button2,"Hit ESCAPE at any time to stop clicking!")
+	GUICtrlSetData($Button2,@CR & @CRLF &  "Hit ESCAPE at any time to stop clicking!")
 	While 1
 		$SpeedReturn = TimerInit()
 		WinSetTitle($ClickHack, "", "[ClickHack] Status: Clicking!")
