@@ -73,14 +73,13 @@ Func StartClick()
 		$SpeedReturn = TimerInit()
 		WinSetTitle($ClickHack, "", "[ClickHack] Status: Clicking!")
 		MouseClick("Left")
-		$Speed = GUICtrlRead($Slider1)
-		Sleep($Speed)
-		If _IsPressed("BD") Then
-			GUICtrlSetData($Slider1, $Speed - 15)
-		EndIf
-		If _IsPressed("BB") Then
-			GUICtrlSetData($Slider1, $Speed + 15)
-		EndIf
+		Sleep(GUICtrlRead($Slider1))
+		;If _IsPressed("BD") Then
+			;GUICtrlSetData($Slider1, GUICtrlRead($Slider1) - 15)
+		;EndIf
+		;If _IsPressed("BB") Then
+			;GUICtrlSetData($Slider1, GUICtrlRead($Slider1) + 15)
+		;EndIf
 		If _IsPressed("1B") Then
 			WinSetTitle($ClickHack, "", "[ClickHack] Status: Off")
 			GUICtrlSetData($Button2,"Start Hack!")
